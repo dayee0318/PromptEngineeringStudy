@@ -2,22 +2,22 @@ import openai
 import os
 
 from dotenv import load_dotenv, find_dotenv
-_ = load_dtenv(find_dotenv())
+_ = load_dtenv(find_dotenv()) # read local .env file
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+openai.api_key = os.getenv('OPENAI_API_KEY')  # 'get from openAI website'
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
-        temperature=0, # this is the degree of randomness of the model's output
+        temperature=0,  # this is the degree of randomness of the model's output
     )
     return response.choices[0].message["content"]
 
 
 # Prompting Principles
-# 1: Write clear and specific instructions
+# 1: Write clear and specific instructions <clear doesn't mean short>
 # 2: Give the model time to "think"
 
 
